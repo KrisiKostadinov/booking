@@ -1,0 +1,19 @@
+RewriteEngine On
+
+ErrorDocument 404 /404.php
+ErrorDocument 405 /404.php
+
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+# hotels
+RewriteRule ^hotels?/$ hotels/post-actions.php
+RewriteRule ^hotels/([0-9]+)$ hotels/get-actions.php?id=$1
+
+# auth
+RewriteRule ^users/register/?$ auth/register.php
+RewriteRule ^users/login/?$ auth/login.php
+RewriteRule ^users/logout/?$ auth/logout.php
+
+RewriteRule ^dbconn.php$ 404.php
+RewriteRule ^functions.php$ 404.php
+RewriteRule ^.htaccess.php$ 404.php
